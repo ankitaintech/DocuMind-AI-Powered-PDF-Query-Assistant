@@ -13,7 +13,7 @@ __pycache__/
 .vscode/
 
 # Temporary or Uploaded Files
-uploaded_pdfs/ # Ignore the directory where user-uploaded files are stored
+uploaded_pdfs/ 
 
 # Environment files
 .env
