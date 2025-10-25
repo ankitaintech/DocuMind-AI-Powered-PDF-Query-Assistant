@@ -73,38 +73,33 @@ Follow these exact steps to run your project locally.
 # 1. Clone the repository
 git clone https://github.com/ankitaintech/DocuMind-AI-Powered-PDF-Query-Assistant.git
 cd DocuMind-AI-Powered-PDF-Query-Assistant
-# 2. Create and activate virtual environment for frontend and backend seperately
+# 2. Create and activate virtual environment for backend seperately and install dependencies
 python -m venv .venv-backend
 .venv-backend\Scripts\activate
+pip install -r backend/requirements.txt
+# 3. Create and activate virtual environment for frontend and install dependencies
 python -m venv .venv-frontend
 .venv-frontend\Scripts\activate
-# 3. Install dependencies
-pip install -r requirements.txt
-pip install -r backend/requirements-backend.txt
-pip install -r frontend/requirements-frontend.txt
-# 4. Run the app (FastAPI)
+pip install -r frontend/requirements.txt
+# 4. To switch the environment
+deactivate
+# 5. Run the backend (FastAPI)
 uvicorn backend.app:app --reload
-uvicorn app:app --reload
-#  Frontend (Streamlit)
+# 6. Run the frontend (Streamlit)
 streamlit run frontend/streamlit_app.py
 ```
 ---
 
 ## Deployment
-**Live Demo URL:**
-`https://your-deployed-app-link.com`
-> If not deployed, mention that the app can be run locally using the setup
-steps above.
+app can be run locally using the setup steps mentioned above.
 
 ---
 
-## Demo Video (Mandatory)
+## Demo Video
 **YouTube Link:**
 `https://youtu.be/your-demo-link`
-> The demo video (2-3 minutes) must clearly show:
-> - How the app works
-> - Core functionality and flow
-> - Any unique or innovative features
+> This demo video clearly show:
+> - How the 
 
 ---
 
@@ -149,6 +144,7 @@ User → Streamlit UI → FastAPI Backend → FAISS Vector Store
 
 ## Acknowledgements
 - Google Generative AI API (Gemini)
+- GitHub Copilot for resolving module related errors 
 - FAISS library for vector search
 - Streamlit for rapid frontend prototyping
 - Hugging Face and LangChain for embeddings and data processing

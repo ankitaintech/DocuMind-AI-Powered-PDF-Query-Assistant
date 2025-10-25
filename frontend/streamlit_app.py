@@ -7,20 +7,23 @@ from dotenv import load_dotenv
 load_dotenv()
 BACKEND_URL = os.getenv("DOCUMIND_BACKEND_URL", "http://127.0.0.1:8000")
 
-# --- Streamlit Page Setup ---
+# -------------------- Streamlit Page Setup ------------------------
+# Set up page title, icon, and layout
 st.set_page_config(
     page_title="DocuMind - PDF Q&A",
     page_icon="📄",
     layout="wide"
 )
 
+# Page header
 st.title("📄 DocuMind — AI Powered PDF Query Assistant")
 st.markdown("---")
 
-# --- Sidebar for File Upload ---
+# ------------------ Sidebar for File Upload ------------------------
 with st.sidebar:
     st.header("📤 Upload Your PDFs")
     st.markdown("Securely upload one or more documents (Limit 200MB each).")
+    # File uploader allowing multiple PDF uploads
     uploaded_files = st.file_uploader(
         "PDF Files",
         type=["pdf"],
@@ -28,6 +31,8 @@ with st.sidebar:
         label_visibility="collapsed"
     )
     st.markdown("---")
+
+    # Sidebar info for user guidance
     st.info(
         "💡 **How it works:**\n"
         "1. Upload your PDFs.\n"
@@ -35,7 +40,8 @@ with st.sidebar:
         "3. Ask questions and get answers grounded in your documents."
     )
 
-# --- Main Logic ---
+# -------------------- Main Logic --------------------
+# If no files uploaded, show a friendly placeholder message
 if not uploaded_files:
     st.markdown(
         """
@@ -47,24 +53,28 @@ if not uploaded_files:
         unsafe_allow_html=True
     )
 else:
-    # State management for multiple files
+    # -------------------- State Management --------------------
+    # Maintain uploaded files across reruns
     if 'uploaded_file_ids' not in st.session_state:
         st.session_state['uploaded_file_ids'] = []
     if 'uploaded_file_names' not in st.session_state:
         st.session_state['uploaded_file_names'] = []
 
 
-    # Only upload new files
+    # Only consider new files that haven't been uploaded yet
     new_files = [f for f in uploaded_files if f.name not in st.session_state['uploaded_file_names']]
     if new_files:
+        # Prepare files for backend POST request
         files_to_upload = [("files", (f.name, f, "application/pdf")) for f in new_files]
 
         try:
             with st.spinner("Uploading and processing PDFs..."):
+                # Send files to backend for processing
                 resp = requests.post(f"{BACKEND_URL}/upload_pdfs", files=files_to_upload)
                 resp.raise_for_status()
                 data = resp.json()
 
+            # Update session state with new file info
             for f in data["uploaded"]:
                 st.session_state['uploaded_file_ids'].append(f["file_id"])
                 st.session_state['uploaded_file_names'].append(f["filename"])
@@ -73,15 +83,18 @@ else:
         except requests.exceptions.RequestException as e:
             st.error(f"🚨 Error uploading PDFs: {e}")
 
-    # --- Q&A Interface ---
+    # -------------------- Q&A Interface --------------------
+    # Text input for user query
     query = st.text_input("💬 Ask a question about the uploaded PDFs:", key="query_input")
 
+    # Button to generate answer
     if st.button("Generate Answer", use_container_width=True, type="primary"):
         if query.strip() == "":
             st.warning("Please enter a question to query your PDFs.")
         else:
             try:
                 with st.spinner("🧠 Analyzing Documents and Generating Response..."):
+                    # Send query to backend with optional top_k parameter
                     response = requests.post(
                         f"{BACKEND_URL}/query",
                         data={"query": query, "top_k": 5}
@@ -89,7 +102,7 @@ else:
                     response.raise_for_status()
                     answer_data = response.json()
 
-                # --- Display Results ---
+                # -------------------- Display Results --------------------
                 if "answer" in answer_data:
                     st.markdown("---")
                     st.markdown("### 💡 RAG-Powered Answer:")
