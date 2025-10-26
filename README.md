@@ -114,7 +114,7 @@ https://www.youtube.com/watch?v=0rUfYsGSVpY
 
 ---
 
-## 🧩 Technical Architecture
+## Technical Architecture
 Workflow:
 1. Upload PDFs: Users upload one or more documents via Streamlit UI.
 2. PDF Processing: Backend extracts text, splits into chunks, and generates embeddings.
