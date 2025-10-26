@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 BACKEND_URL = os.getenv("DOCUMIND_BACKEND_URL", "http://127.0.0.1:8000")
 
-# -------------------- Streamlit Page Setup ------------------------
+# -------------------------------- Streamlit Page Setup ---------------------------------
 # Set up page title, icon, and layout
 st.set_page_config(
     page_title="DocuMind - PDF Q&A",
@@ -19,7 +19,7 @@ st.set_page_config(
 st.title("📄 DocuMind — AI Powered PDF Query Assistant")
 st.markdown("---")
 
-# ------------------ Sidebar for File Upload ------------------------
+# ------------------------------- Sidebar for File Upload -------------------------------
 with st.sidebar:
     st.header("📤 Upload Your PDFs")
     st.markdown("Securely upload one or more documents (Limit 200MB each).")
@@ -40,7 +40,7 @@ with st.sidebar:
         "3. Ask questions and get answers grounded in your documents."
     )
 
-# -------------------- Main Logic --------------------
+# ----------------------------------- Main Logic -----------------------------------------
 # If no files uploaded, show a friendly placeholder message
 if not uploaded_files:
     st.markdown(
@@ -53,7 +53,7 @@ if not uploaded_files:
         unsafe_allow_html=True
     )
 else:
-    # -------------------- State Management --------------------
+    # --------------------------------- State Management ----------------------------------
     # Maintain uploaded files across reruns
     if 'uploaded_file_ids' not in st.session_state:
         st.session_state['uploaded_file_ids'] = []
@@ -83,7 +83,7 @@ else:
         except requests.exceptions.RequestException as e:
             st.error(f"🚨 Error uploading PDFs: {e}")
 
-    # -------------------- Q&A Interface --------------------
+    # ----------------------------------------- Q&A Interface -------------------------------
     # Text input for user query
     query = st.text_input("💬 Ask a question about the uploaded PDFs:", key="query_input")
 
@@ -102,7 +102,7 @@ else:
                     response.raise_for_status()
                     answer_data = response.json()
 
-                # -------------------- Display Results --------------------
+                # ------------------------------- Display Results --------------------------
                 if "answer" in answer_data:
                     st.markdown("---")
                     st.markdown("### 💡 RAG-Powered Answer:")

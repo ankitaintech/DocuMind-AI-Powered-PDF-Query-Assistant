@@ -83,9 +83,13 @@ python -m venv .venv-frontend
 pip install -r frontend/requirements.txt
 # 4. To switch the environment
 deactivate
-# 5. Run the backend (FastAPI)
+# 5. Set Up Local Environment
+copy .env.example .env 
+""" Open the newly created .env file and update the placeholder values.
+Replace your_gemini_api_key_here with your actual Google Gemini API Key."""
+# 6. Run the backend (FastAPI)
 uvicorn backend.app:app --reload
-# 6. Run the frontend (Streamlit)
+# 7. Run the frontend (Streamlit)
 streamlit run frontend/streamlit_app.py
 ```
 ---
