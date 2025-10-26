@@ -95,15 +95,13 @@ streamlit run frontend/streamlit_app.py
 ---
 
 ## Deployment
-app can be run locally using the setup steps mentioned above.
+App can be run locally using the setup steps mentioned above.
 
 ---
 
 ## Demo Video
 **YouTube Link:**
 `https://youtu.be/your-demo-link`
-> This demo video clearly show:
-> - How the 
 
 ---
 
@@ -126,6 +124,7 @@ Workflow:
 6. Citations: Each answer is accompanied by file name, page number, rank, and score for traceability.
 7. Frontend Display: Streamlit shows answer and a collapsible list of grounded citations.
 
+```
 ASCII Diagram:
 
 User → Streamlit UI → FastAPI Backend → FAISS Vector Store
@@ -135,14 +134,27 @@ User → Streamlit UI → FastAPI Backend → FAISS Vector Store
                            Answer + Citations
                               ↓
                           Displayed to User
-
+```
 ---
 
 ## 🧾 References
-- [OpenAI API](https://platform.openai.com/)
-- [LangChain Documentation](https://python.langchain.com)
-- [Hugging Face Datasets](https://huggingface.co/datasets)
-- [FAISS Library](https://github.com/facebookresearch/faiss)
+- Google Gemini API (Generative AI on Vertex AI) 
+https://cloud.google.com/vertex-ai/generative-ai/docs
+
+- FAISS (Facebook AI Similarity Search)
+https://github.com/facebookresearch/faiss
+
+- Sentence Transformers
+https://www.sbert.net/
+
+- Streamlit Documentation
+https://docs.streamlit.io/
+
+- FastAPI Documentation
+https://fastapi.tiangolo.com/
+
+- python-dotenv
+https://pypi.org/project/python-dotenv/
 
 ---
 
