@@ -151,4 +151,4 @@ User → Streamlit UI → FastAPI Backend → FAISS Vector Store
 - GitHub Copilot for resolving module related errors 
 - FAISS library for vector search
 - Streamlit for rapid frontend prototyping
-- Hugging Face and LangChain for embeddings and data processing
+- Hugging Face and Sentence Transformers for embeddings and data processing
