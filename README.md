@@ -95,22 +95,22 @@ streamlit run frontend/streamlit_app.py
 ---
 
 ## Deployment
-App can be run locally using the setup steps mentioned above.
+You can run DocuMind locally by following the setup instructions mentioned above. Ensure that your backend API is running and the environment variables are correctly configured.
 
 ---
 
 ## Demo Video
-**YouTube Link:**
-`https://youtu.be/your-demo-link`
+**Watch the project overview and demo here:**
+https://www.youtube.com/watch?v=0rUfYsGSVpY
 
 ---
 
 ## Features
-- Upload and query multiple PDFs simultaneously
-- RAG-powered contextual retrieval for long documents
-- Google Gemini-powered generative answers
-- Automatic citation tracking with file names, page numbers, and confidence scores
-- Clean, interactive Streamlit interface
+- Multi-PDF Support: Upload and query multiple PDFs simultaneously.
+- RAG-Powered Retrieval: Context-aware answers for long documents using Retrieval-Augmented Generation.
+- Generative AI Answers: Powered by Google Gemini API for natural, informative responses.
+- Automatic Citation Tracking: Displays source file, page number, and confidence score for each answer.
+- Interactive Interface: Clean, user-friendly Streamlit frontend for seamless interaction.
 
 ---
 
